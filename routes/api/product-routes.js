@@ -25,7 +25,7 @@ router.get('/:id', (req, res) => {
   // find a single product by its `id`
   Product.findByPk(req.params.id, {include: [Category, Tag]}).then(product=>{
       if(!product) {
-        res.status(404).json({msg:"no products in the database"})
+        return res.status(404).json({msg:"no products in the database"})
       }
       res.json(product);
   }).catch(err=>{
